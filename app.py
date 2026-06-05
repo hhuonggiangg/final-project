@@ -55,13 +55,13 @@ def load_models():
     try:
         with open('model_lr.pkl', 'rb') as f:
             model_lr = pickle.load(f)
-        with open('model_rf.pkl', 'rb') as f:
-            model_rf = pickle.load(f)
+    #    with open('model_rf.pkl', 'rb') as f:
+         #   model_rf = pickle.load(f)
         with open('scaler.pkl', 'rb') as f:
             scaler = pickle.load(f)
         with open('model_info.pkl', 'rb') as f:
             model_info = pickle.load(f)
-        return model_lr, model_rf, scaler, feature_names, model_info
+        return model_lr, scaler, feature_names, model_info
     except:
         return None, None, None, None, None
         # Load from file (nếu file tồn tại)
@@ -78,7 +78,7 @@ except:
 df = load_data()
 
 # Try to load models
-model_lr, model_rf, scaler, feature_names, model_info = load_models()
+model_lr, scaler, feature_names, model_info = load_models()
 
 # Check if models are loaded
 if model_lr is None:
@@ -238,7 +238,7 @@ elif page == "🔮 Predict Popularity":
         
         # Make predictions
         pred_lr = model_lr.predict(input_scaled)[0]
-        pred_rf = model_rf.predict(input_scaled)[0]
+     #   pred_rf = model_rf.predict(input_scaled)[0]
         
         # Ensure predictions are within 0-100
         pred_lr = max(0, min(100, pred_lr))
