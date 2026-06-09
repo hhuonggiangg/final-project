@@ -282,7 +282,7 @@ if 'leaderboard' not in st.session_state:
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv('data/spotify_songs.csv')
+        df = pd.read_csv('spotify_songs.csv')
         return df
     except:
         st.error("❌ Could not load data. Make sure data/spotify_songs.csv exists!")
