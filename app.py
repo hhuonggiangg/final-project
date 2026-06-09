@@ -285,22 +285,23 @@ def load_data():
         df = pd.read_csv('spotify_songs.csv')
         return df
     except:
-        st.error("❌ Could not load data. Make sure data/spotify_songs.csv exists!")
+        st.error("❌ Could not load data. Make sure spotify_songs.csv exists!")
         return None
 
 @st.cache_resource
 def load_models():
     try:
-        with open('models/model_lr.pkl', 'rb') as f:
+        with open('model_lr.pkl', 'rb') as f:
             model_lr = pickle.load(f)
-        with open('models/model_rf.pkl', 'rb') as f:
+        with open('model_rf.pkl', 'rb') as f:
             model_rf = pickle.load(f)
-        with open('models/scaler.pkl', 'rb') as f:
+        with open('scaler.pkl', 'rb') as f:
             scaler = pickle.load(f)
-        with open('models/model_info.pkl', 'rb') as f:
+        with open('model_info.pkl', 'rb') as f:
             model_info = pickle.load(f)
         return model_lr, model_rf, scaler, model_info
-    except:
+    except Exception as e:
+        st.error(f"Error loading models: {e}")
         return None, None, None, None
 
 try:
