@@ -293,16 +293,14 @@ def load_models():
     try:
         with open('model_lr.pkl', 'rb') as f:
             model_lr = pickle.load(f)
-        with open('model_rf.pkl', 'rb') as f:
-            model_rf = pickle.load(f)
         with open('scaler.pkl', 'rb') as f:
             scaler = pickle.load(f)
         with open('model_info.pkl', 'rb') as f:
             model_info = pickle.load(f)
-        return model_lr, model_rf, scaler, model_info
+        return model_lr, scaler, model_info
     except Exception as e:
         st.error(f"Error loading models: {e}")
-        return None, None, None, None
+        return None, None, None
 
 try:
     with open('feature_names.pkl', 'rb') as f:
